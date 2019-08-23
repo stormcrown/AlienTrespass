@@ -16,18 +16,19 @@ class Plane:
         self.move_right = False
         self.move_up = False
         self.move_down = False
-        self.move_size = 2
+        self.move_speed = 2
 
     def blitme(self):
         """在指定位置绘制飞船"""
         self.screen.blit(self.image, self.rect)
 
     def update_location(self):
-        if self.move_left:
-            self.rect.centerx -= self.move_size
-        if self.move_right:
-            self.rect.centerx += self.move_size
-        if self.move_up:
-            self.rect.bottom -= self.move_size
-        if self.move_down:
-            self.rect.bottom += self.move_size
+        if self.move_left and self.rect.centerx > 0:
+            self.rect.centerx -= self.move_speed
+        if self.move_right and self.rect.centerx < 2 * self.screen_rect.centerx:
+            self.rect.centerx += self.move_speed
+        if self.move_up and self.rect.bottom > 0:
+            self.rect.bottom -= self.move_speed
+        if self.move_down and self.rect.bottom < self.screen_rect.bottom:
+            self.rect.bottom += self.move_speed
+        # 根据self.center更新rect对象
