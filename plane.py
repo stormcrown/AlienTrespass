@@ -25,10 +25,11 @@ class Plane:
     def update_location(self):
         if self.move_left and self.rect.centerx > 0:
             self.rect.centerx -= self.move_speed
-        if self.move_right and self.rect.centerx < 2 * self.screen_rect.centerx:
+        if self.move_right and self.rect.centerx < self.screen_rect.width:
             self.rect.centerx += self.move_speed
         if self.move_up and self.rect.bottom > 0:
             self.rect.bottom -= self.move_speed
-        if self.move_down and self.rect.bottom < self.screen_rect.bottom:
+        if self.move_down and self.rect.bottom < self.screen_rect.height-100:
+            print( self.rect.bottom , self.screen_rect.height)
             self.rect.bottom += self.move_speed
         # 根据self.center更新rect对象
